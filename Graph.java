@@ -1,6 +1,7 @@
 package sorting_algorithms;
 
-import com.formdev.flatlaf.*;
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -513,6 +514,11 @@ public class Graph extends javax.swing.JFrame {
 
     @SuppressWarnings("unchecked")
     private void initComponents() {
+        try {
+            UIManager.setLookAndFeel(lf_light);
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(Graph.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Image image = dark_icon.getImage(); // transform it 
         Image newimg = image.getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
         dark_icon = new ImageIcon(newimg);
@@ -682,17 +688,12 @@ public class Graph extends javax.swing.JFrame {
         SwingUtilities.updateComponentTreeUI(frame);
     }
 
-    public void Visualize() {
-        try {
-            UIManager.setLookAndFeel(lf_light);
-        } catch (UnsupportedLookAndFeelException ex) {
-            Logger.getLogger(Graph.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(() -> {
             JFrame frame = new Graph();
-            frame.setTitle("Sorting Algorithm Visulaizer");
+            frame.setTitle("Sorting Algorithm Visulaiser");
             frame.setResizable(false);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.revalidate();
             frame.pack();
             frame.setLocationRelativeTo(null);
